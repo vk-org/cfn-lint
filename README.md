@@ -148,14 +148,19 @@ Tests can be run using `npm test`. There should be a test case for every templat
 for example an invalid parameter for `Fn::Join` or an incorrect reference for `Ref`. 
 The tests depend on `Mocha` and `chai`.
 
+### TypeScript
+As of V2.3.0, cfn-lint uses TypeScript. Implementing full types is a work in progress and 
+any PRs for this work is greatly appreciated. It is hoped in the long term this will make
+the project more stable. If you are new to TypeScript, see this sample tutorial [here](http://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
+
 ### IDE Setup
 
 If you use a JetBrains editor, the following Run Configuration can be setup 
 for the Mocha test suite:
 
-Node Options: --harmony
-Extra Mocha Options: --compilers js:babel-register --require babel-polyfill
-Test Directory: <working dir>\test
+Node Options: None
+Extra Mocha Options: None
+Test Directory: <working dir>/lib/test
 
 ### Local testing of CLI
 
