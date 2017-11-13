@@ -4,8 +4,6 @@ import opn = require('opn');
 
 export function getDoc(search: string | null, browse: boolean = true){
 
-    let formattedSearch = search;
-
     // TODO: Make the searching case insensitive
 
     let docs = exports.getUrls(search);
@@ -19,7 +17,7 @@ export function getDoc(search: string | null, browse: boolean = true){
     let j = docs.join(", ");
     return `Opening ${j} in your browser...`;
 
-};
+}
 
 export function getUrls(search: string | null = ''){
 
@@ -38,7 +36,7 @@ export function getUrls(search: string | null = ''){
 
 
     return docs;
-};
+}
 
 function searchInResources(search: string): string[] {
     let dotCount = (search.match(/\./g) || []).length;
@@ -53,7 +51,7 @@ function searchInResources(search: string): string[] {
 
     }else if(dotCount == 1){
 
-        let urls: string[] = new Array();
+        let urls: string[] = [];
 
         // Check PropertyTypes
         if(awsResources['PropertyTypes'].hasOwnProperty(search)){

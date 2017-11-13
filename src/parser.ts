@@ -23,7 +23,7 @@ export function openFile(path: string){
         throw Error(`Could not determine file type. Check your template is not malformed. ${e.message}`);
     }
 
-};
+}
 
 function openYaml(path: string){
 

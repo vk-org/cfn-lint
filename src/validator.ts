@@ -32,23 +32,23 @@ export function resetValidator(){
     errorObject = {"templateValid": true, "errors": {"info": [], "warn": [], "crit": []}};
     stopValidation = false;
     parameterRuntimeOverride = {};
-};
+}
 
 export function validateFile(path: string){
     // Convert to object, this will throw an exception on an error
     workingInput = parser.openFile(path);
     // Let's go!
    return validateWorkingInput();
-};
+}
 
 export function validateJsonObject(obj: any){
     workingInput = obj;
     return validateWorkingInput();
-};
+}
 
 export function addParameterValue(parameter: string, value: string){
     addParameterOverride(parameter, value);
-};
+}
 
 export function addPseudoValue(parameter: string, value: string){
     // Silently drop requests to change AWS::NoValue
@@ -71,7 +71,7 @@ export function addPseudoValue(parameter: string, value: string){
     }else{
         addError('crit', parameter + " is not an allowed pseudo parameter", ['cli-options'], 'pseudo parameters');
     }
-};
+}
 
 function addParameterOverride(parameter: string, value: string){
     parameterRuntimeOverride[parameter] = value;
@@ -87,7 +87,7 @@ function validateWorkingInput(){
         let testValue  = workingInput['AWSTemplateFormatVersion'];
 
         if(typeof workingInput['AWSTemplateFormatVersion'] == 'object'){
-            addError('warn', 'AWSTemplateFormatVersion is recommended to be of type string \'2010-09-09\'', ['AWSTemplateFormatVersion'], 'AWSTemplateFormatVersion')
+            addError('warn', 'AWSTemplateFormatVersion is recommended to be of type string \'2010-09-09\'', ['AWSTemplateFormatVersion'], 'AWSTemplateFormatVersion');
             testValue = testValue.toUTCString();
         }
 
@@ -320,10 +320,12 @@ function assignResourcesOutputs(){
             //  Go through the attributes of the specification, and assign them
             if(spec != null && spec.Attributes){
                 for(let attr in spec.Attributes){
-                    if (attr.indexOf('Arn') != -1) {
-                        workingInput['Resources'][res]['Attributes'][attr] = mockArnPrefix + res;
-                    }else {
-                        workingInput['Resources'][res]['Attributes'][attr] = "mockAttr_" + res;
+                    if(spec.Attributes.hasOwnProperty(attr)) {
+                        if (attr.indexOf('Arn') != -1) {
+                            workingInput['Resources'][res]['Attributes'][attr] = mockArnPrefix + res;
+                        } else {
+                            workingInput['Resources'][res]['Attributes'][attr] = "mockAttr_" + res;
+                        }
                     }
                 }
             }
@@ -341,9 +343,6 @@ function resolveReferences(){
     // Resolve all Ref
     lastPositionInTemplate = workingInput;
     recursiveDecent(lastPositionInTemplate);
-
-
-    let stop = workingInput;
 
 }
 

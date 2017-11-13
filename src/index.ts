@@ -7,7 +7,7 @@
 import program = require('commander');
 require('colors');
 let version = require('../package').version;
-let firstArg: string | undefined = undefined
+let firstArg: string | undefined = undefined;
 let secondArg: string = undefined!;
 
 function list(val: string) {
