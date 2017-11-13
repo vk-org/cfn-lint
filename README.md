@@ -149,7 +149,7 @@ for example an invalid parameter for `Fn::Join` or an incorrect reference for `R
 The tests depend on `Mocha` and `chai`.
 
 ### TypeScript
-As of V2.3.0, cfn-lint uses TypeScript. Implementing full types is a work in progress and 
+As of V1.3.0, cfn-lint uses TypeScript. Implementing full types is a work in progress and 
 any PRs for this work is greatly appreciated. It is hoped in the long term this will make
 the project more stable. If you are new to TypeScript, see this sample tutorial [here](http://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
 
